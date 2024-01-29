@@ -1,1 +1,1 @@
-SELECT * FROM etudiant ORDER BY nom ASC, prenom ASC;
+SELECT * FROM etudiant WHERE age BETWEEN 18 AND 25 ORDER BY age ASC;
