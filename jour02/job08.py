@@ -48,6 +48,18 @@ class ZooManager:
             print("Animal ajouté avec succès.")
         except mysql.connector.Error as err:
             print(f"Erreur lors de l'ajout de l'animal : {err}")
+            
+    def remove_animal(self, animal_id):
+        query = "DELETE FROM animal WHERE id = %s"
+        values = (animal_id,)
+        self.cursor.execute(query, values)
+        self.conn.commit()
+
+    def modify_animal(self, animal_id, new_values):
+        query = "UPDATE animal SET nom = %s, race = %s, id_cage = %s, date_naissance = %s, pays_origine = %s WHERE id = %s"
+        values = (*new_values, animal_id)
+        self.cursor.execute(query, values)
+        self.conn.commit()
 
     def display_all_animals(self):
         try:
